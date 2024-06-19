@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Primos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Imprime los números primos</h1>
+    <input type="number" id="ingreso" placeholder="Introduce un número">
+    <button onclick="encontrarPrimos()">Mostrar Primos</button>
+    <div class="resultado" id="resultado"></div>
+
+    <script>
+        function esPrimo(numero) {
+            if (numero <= 1) return false;
+            if (numero === 2) return true;
+            for (let i = 2; i <= Math.sqrt(numero); i++) {
+                if (numero % i === 0) return false;
+            }
+            return true;
+        }
+
+        function encontrarPrimos() {
+            const numero = parseInt(document.getElementById('ingreso').value);
+            const primos = [];
+            for (let i = 2; i <= numero; i++) {
+                if (esPrimo(i)) {
+                    primos.push(i);
+                }
+            }
+            document.getElementById('resultado').textContent = `Números primos: ${primos.join(', ')}`;
+        }
+    </script>
+</body>
+</html>
